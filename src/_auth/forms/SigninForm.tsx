@@ -57,7 +57,7 @@ const SigninForm = () => {
   <img src="/assets/images/pcmi.png" alt="logo" style={{ width: "80px" }} />
 
         
-        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12 tracking-wider sm:tracking-widest">
+        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12 tracking-wider sm:tracking-widest text-lg sm:text-xl">
   Welcome to PCMI!
 </h2>
         
