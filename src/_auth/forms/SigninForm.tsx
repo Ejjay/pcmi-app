@@ -62,7 +62,7 @@ const SigninForm = () => {
 </h2>
         
         <p className="text-light-3 small-medium md:base-regular mt-2">
-         Pag-ibig Christian Ministries Infanta Quezon.
+         Pag-ibig Christian Ministries Infanta Quezon <br></br>Official App.
         </p>
         <form
           onSubmit={form.handleSubmit(handleSignin)}
