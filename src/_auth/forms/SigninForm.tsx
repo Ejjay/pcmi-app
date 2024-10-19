@@ -62,10 +62,10 @@ const SigninForm = () => {
 </h2>
         
         <p className="text-light-3 small-medium md:base-regular mt-2">
-         Pag-ibig Christian Ministries Infanta Quezon&apos;
+         Pag-ibig Christian Ministries Infanta Quezon&apos;s
         </p>
   
-  <p className="text-light-3 small-medium md:base-regular mt-2">
+  <p className="text-light-3 small-medium md:base-regular">
          Official App.
         </p>
   
