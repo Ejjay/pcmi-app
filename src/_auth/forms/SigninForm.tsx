@@ -62,8 +62,14 @@ const SigninForm = () => {
 </h2>
         
         <p className="text-light-3 small-medium md:base-regular mt-2">
-         Pag-ibig Christian Ministries Infanta Quezon <br></br>Official App.
+         Pag-ibig Christian Ministries Infanta Quezon&apos;
         </p>
+  
+  <p className="text-light-3 small-medium md:base-regular mt-2">
+         Official App.
+        </p>
+  
+  
         <form
           onSubmit={form.handleSubmit(handleSignin)}
           className="flex flex-col gap-5 w-full mt-4">
