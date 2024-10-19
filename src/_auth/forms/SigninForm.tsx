@@ -57,10 +57,12 @@ const SigninForm = () => {
   <img src="/assets/images/pcmi.png" alt="logo" style={{ width: "80px" }} />
 
         <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
-          Log in to your account
+         
+          Welcome to PCMI!
+          
         </h2>
         <p className="text-light-3 small-medium md:base-regular mt-2">
-          Welcome back! Please enter your details.
+          Login here.
         </p>
         <form
           onSubmit={form.handleSubmit(handleSignin)}
