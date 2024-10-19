@@ -62,7 +62,7 @@ const SigninForm = () => {
 </h2>
         
         <p className="text-light-3 small-medium md:base-regular mt-2">
-         You can Login here.
+         Pag-ibig Christian Ministries Official App.
         </p>
         <form
           onSubmit={form.handleSubmit(handleSignin)}
