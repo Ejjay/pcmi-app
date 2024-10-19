@@ -79,10 +79,10 @@ const SignupForm = () => {
   
 
         <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
-          Create a new account
+          Create your Account
         </h2>
         <p className="text-light-3 small-medium md:base-regular mt-2">
-          To continue, Please enter your details here
+          To continue, Please enter your details
         </p>
 
         <form
@@ -93,7 +93,7 @@ const SignupForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">Name</FormLabel>
+                <FormLabel className="shad-form_label">Full Name</FormLabel>
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
