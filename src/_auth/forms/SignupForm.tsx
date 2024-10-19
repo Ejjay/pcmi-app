@@ -82,7 +82,7 @@ const SignupForm = () => {
           Create your Account
         </h2>
         <p className="text-light-3 small-medium md:base-regular mt-2">
-          To continue to the app, Please enter your details here
+          To continue, Please enter your details here
         </p>
 
         <form
