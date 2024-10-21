@@ -2,13 +2,11 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
-
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/shared/Loader";
 import { useToast } from "@/components/ui/use-toast";
-
 import { SigninValidation } from "@/lib/validation";
 import { useSignInAccount } from "@/lib/react-query/queries";
 import { useUserContext } from "@/context/AuthContext";
@@ -17,10 +15,9 @@ const SigninForm = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
-
-  // Query
+  
   const { mutateAsync: signInAccount, isLoading } = useSignInAccount();
-
+  
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
     defaultValues: {
@@ -34,7 +31,6 @@ const SigninForm = () => {
 
     if (!session) {
       toast({ title: "Login failed. Please try again." });
-      
       return;
     }
 
@@ -42,11 +38,9 @@ const SigninForm = () => {
 
     if (isLoggedIn) {
       form.reset();
-
       navigate("/");
     } else {
-      toast({ title: "Login failed. Please try again.", });
-      
+      toast({ title: "Login failed. Please try again." });
       return;
     }
   };
@@ -54,25 +48,34 @@ const SigninForm = () => {
   return (
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
-  <img src="/assets/images/pcmi.png" alt="logo" style={{ width: "80px" }} />
-
+        <img src="/assets/images/pcmi.png" alt="logo" style={{ width: "80px" }} />
         
         <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12 tracking-wider sm:tracking-widest text-lg sm:text-xl">
-  Welcome to PCMI!
-</h2>
-        
+          Welcome to PCMI!
+        </h2>
+
         <p className="text-light-3 small-medium md:base-regular mt-2">
-         Pag-ibig Christian Ministries Infanta Quezon&apos;s
+          Pag-ibig Christian Ministries Infanta Quezon&apos;s
         </p>
-  
-  <p className="text-light-3 small-medium md:base-regular">
-         Official App.
+
+        <p className="text-light-3 small-medium md:base-regular">
+          Official App.
         </p>
-  
-  
-        <form
-          onSubmit={form.handleSubmit(handleSignin)}
-          className="flex flex-col gap-5 w-full mt-4">
+
+        {/* Error Message */}
+        <div className="text-red-500 text-center mb-4">
+          {form.formState.errors.email && (
+            <div>{form.formState.errors.email.message}</div>
+          )}
+          {form.formState.errors.password && (
+            <div>{form.formState.errors.password.message}</div>
+          )}
+          {form.formState.submitCount > 0 && !form.formState.isSubmitSuccessful && (
+            <div>Login failed. Please try again.</div>
+          )}
+        </div>
+
+        <form onSubmit={form.handleSubmit(handleSignin)} className="flex flex-col gap-5 w-full mt-4">
           <FormField
             control={form.control}
             name="email"
@@ -113,9 +116,7 @@ const SigninForm = () => {
 
           <p className="text-small-regular text-light-2 text-center mt-2">
             Don&apos;t have an account?
-            <Link
-              to="/sign-up"
-              className="text-primary-500 text-small-semibold ml-1">
+            <Link to="/sign-up" className="text-primary-500 text-small-semibold ml-1">
               Sign up
             </Link>
           </p>
