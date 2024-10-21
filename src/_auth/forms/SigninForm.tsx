@@ -15,10 +15,8 @@ const SigninForm = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
-  
   // Query
   const { mutateAsync: signInAccount, isLoading } = useSignInAccount();
-  
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
     defaultValues: {
@@ -29,14 +27,11 @@ const SigninForm = () => {
 
   const handleSignin = async (user: z.infer<typeof SigninValidation>) => {
     const session = await signInAccount(user);
-    
     if (!session) {
       toast({ title: "Login failed. Please try again." });
       return;
     }
-
     const isLoggedIn = await checkAuthUser();
-    
     if (isLoggedIn) {
       form.reset();
       navigate("/");
@@ -50,20 +45,19 @@ const SigninForm = () => {
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
         <img src="/assets/images/pcmi.png" alt="logo" style={{ width: "80px" }} />
-        
         <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12 tracking-wider sm:tracking-widest text-lg sm:text-xl">
           Welcome to PCMI!
         </h2>
-        
         <p className="text-light-3 small-medium md:base-regular mt-2">
           Pag-ibig Christian Ministries Infanta Quezon&apos;s
         </p>
-        
         <p className="text-light-3 small-medium md:base-regular">
           Official App.
         </p>
-
-        <form onSubmit={form.handleSubmit(handleSignin)} className="flex flex-col gap-5 w-full mt-4">
+        <form
+          onSubmit={form.handleSubmit(handleSignin)}
+          className="flex flex-col gap-5 w-full mt-4"
+        >
           <FormField
             control={form.control}
             name="email"
@@ -77,7 +71,6 @@ const SigninForm = () => {
               </FormItem>
             )}
           />
-
           <FormField
             control={form.control}
             name="password"
@@ -91,7 +84,6 @@ const SigninForm = () => {
               </FormItem>
             )}
           />
-
           <Button type="submit" className="shad-button_primary">
             {isLoading || isUserLoading ? (
               <div className="flex-center gap-2">
@@ -101,40 +93,17 @@ const SigninForm = () => {
               "Log in"
             )}
           </Button>
-
           <p className="text-small-regular text-light-2 text-center mt-2">
             Don&apos;t have an account?
-            <Link to="/sign-up" className="text-primary-500 text-small-semibold ml-1">
+            <Link
+              to="/sign-up"
+              className="text-primary-500 text-small-semibold ml-1"
+            >
               Sign up
             </Link>
           </p>
         </form>
       </div>
-
-      {/* Toast CSS */}
-      <style jsx>{`
-        .toast {
-          position: fixed;
-          top: 20px;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 1000; /* Make sure it's on top */
-          padding: 10px 20px;
-          background-color: #f44336; /* Example background color for the toast */
-          color: white;
-          border-radius: 5px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.3s ease;
-        }
-
-        @media (max-width: 600px) {
-          .toast {
-            top: 10px; /* Adjust for smaller screens */
-          }
-        }
-      `}</style>
     </Form>
   );
 };
